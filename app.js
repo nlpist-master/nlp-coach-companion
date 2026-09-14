@@ -1,22 +1,12 @@
-/* app.js — NLP Coach Companion
-   Depends on data.js having run first and set window.APP_DATA.
-   Wrapped in DOMContentLoaded + a defensive check so load order
-   can't leave this running before the DOM or the data object exist. */
+/* app.js — NLP Coach Companion */
 
-document.addEventListener("DOMContentLoaded", function () {
+let appInitialized = false;
+
+function initializeApp() {
+  if (appInitialized || !window.APP_DATA) return;
+  appInitialized = true;
 
   const data = window.APP_DATA;
-
-  if (!data) {
-    const main = document.querySelector(".main");
-    if (main) {
-      main.innerHTML =
-        '<div class="empty-state">שגיאת טעינה: קובץ הנתונים (data.js) לא נטען. ' +
-        "ודא/י ש-data.js נטען לפני app.js.</div>";
-    }
-    console.error("APP_DATA is undefined — data.js must load before app.js.");
-    return;
-  }
 
   const demoBadge = document.querySelector(".demo-badge");
   if (demoBadge && data.demoLabel) demoBadge.textContent = data.demoLabel;
@@ -480,4 +470,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   renderFavoritesView();
   renderScenarios();
-});
+}
+
+window.addEventListener("appDataReady", initializeApp);
+
+// Handles cached data that became available before app.js registered its listener.
+if (window.APP_DATA) initializeApp();

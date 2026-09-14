@@ -158,10 +158,8 @@
   </main>
 </div>
 
-<!-- Load order matters: data.js must run before app.js.
-     Both are plain (non-module, non-defer) scripts, so the browser
-     executes them synchronously in the order they appear here. -->
-<script src="data.js"></script>
+<!-- Dynamic data must be ready before the application initializes. -->
+<script src="fetch-data.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

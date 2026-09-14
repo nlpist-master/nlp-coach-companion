@@ -1,5 +1,5 @@
 const SHEET_ID = "1ZZaEVudyr_9wDqD9RaQkIrYyAC2AVU10i9xHB2YhI58";
-const BASE_URL = `[https://opensheet.elk.sh/$](https://opensheet.elk.sh/$){SHEET_ID}`;
+const BASE_URL = `https://opensheet.elk.sh/${SHEET_ID}`;
 
 async function fetchFromSheets() {
   const [

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NLP Coach Companion</title>
+<link rel="icon" type="image/png" href="/icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ================= Header ================= -->
+  <header class="app-header">
+    <a class="header-logo-link" href="#home" aria-label="חזרה לעמוד הראשי">
+      <img class="header-logo" src="/icon.png" alt="לוגו NLP Coach Companion">
+    </a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="פתיחת תפריט" aria-expanded="false" aria-controls="sidebar">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="brand">
+      <div class="brand-mark">NC</div>
+      <div>
+        <div class="brand-name">NLP Coach Companion</div>
+        <div class="brand-tagline">כלי עבודה יומיומי למאמני NLP</div>
+      </div>
+    </div>
+    <div class="header-meta-group">
+      <span class="demo-badge">תוכן הדגמה</span>
+      <div class="header-meta" id="header-meta">ראשי</div>
+    </div>
+  </header>
+
+  <!-- ================= Sidebar navigation ================= -->
+  <nav class="sidebar" id="sidebar" aria-label="ניווט ראשי">
+    <button class="nav-item active" data-view="home" aria-current="page">
+      <span class="nav-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>
+      </span>
+      ראשי
+    </button>
+    <button class="nav-item" data-view="learning">
+      <span class="nav-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5V6a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v13"/><path d="M6 4h13v14H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></svg>
+      </span>
+      חזרה
+    </button>
+    <button class="nav-item" data-view="questions">
+      <span class="nav-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </span>
+      שאלות
+    </button>
+    <button class="nav-item" data-view="practice">
+      <span class="nav-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 21h8"/><path d="M12 17v4"/><rect x="3" y="4" width="18" height="13" rx="2"/></svg>
+      </span>
+      תרגול
+    </button>
+    <button class="nav-item" data-view="favorites">
+      <span class="nav-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.2-4.6-9.8-9A5.4 5.4 0 0 1 12 6a5.4 5.4 0 0 1 9.8 6c-2.6 4.4-9.8 9-9.8 9Z"/></svg>
+      </span>
+      מועדפים
+    </button>
+    <button class="nav-item" data-view="about">
+      <span class="nav-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      </span>
+      אודות
+    </button>
+
+    <div class="sidebar-footer">
+      גרסת דמו — כל הנתונים וההתקדמות נשמרים בדפדפן זה בלבד.
+    </div>
+  </nav>
+  <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
+
+  <!-- ================= Main content ================= -->
+  <main class="main">
+
+    <!-- ---------- View: ראשי ---------- -->
+    <section class="view active" id="view-home">
+      <div class="view-header">
+        <h2 id="welcome-banner">ברוך/ה הבא/ה</h2>
+        <p>נקודת המוצא היומיומית שלך — חומרי חזרה, שאלות אימון ותרחישי תרגול, הכל במקום אחד.</p>
+      </div>
+      <div class="card-grid entry-grid" id="dashboard-entry-cards"></div>
+      <h3 class="stats-heading">סקירה מהירה</h3>
+      <div class="stats-grid" id="dashboard-stats"></div>
+    </section>
+
+    <!-- ---------- View: חזרה ---------- -->
+    <section class="view" id="view-learning">
+      <div class="view-header">
+        <h2>חזרה<span class="eyebrow-count" id="learning-progress-count"></span></h2>
+        <p>בחר/י נושא לחזרה: הסבר קצר, שאלות ותשובות להעמקה, וסימון התקדמות.</p>
+      </div>
+      <div class="topic-selector" id="topic-selector"></div>
+      <div id="topic-detail"></div>
+    </section>
+
+    <!-- ---------- View: שאלות ---------- -->
+    <section class="view" id="view-questions">
+      <div class="view-header">
+        <h2>מאגר שאלות<span class="eyebrow-count" id="questions-count"></span></h2>
+        <p>חיפוש וסינון שאלות אימון לפי קטגוריה, לשימוש חי במהלך מפגש.</p>
+      </div>
+      <div class="search-bar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A97A8" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="text" id="question-search" placeholder="חיפוש שאלה...">
+      </div>
+      <div class="category-pills" id="category-pills"></div>
+      <div id="question-list"></div>
+    </section>
+
+    <!-- ---------- View: תרגול ---------- -->
+    <section class="view" id="view-practice">
+      <div class="view-header">
+        <h2>תרחישי תרגול<span class="eyebrow-count" id="practice-count"></span></h2>
+        <p>תרחישי לקוח לדוגמה עם כיווני הנחיה אפשריים לתרגול עצמאי.</p>
+      </div>
+      <div id="scenario-list"></div>
+    </section>
+
+    <!-- ---------- View: מועדפים ---------- -->
+    <section class="view" id="view-favorites">
+      <div class="view-header">
+        <h2>מועדפים<span class="eyebrow-count" id="favorites-count"></span></h2>
+        <p>שאלות ששמרת לגישה מהירה במהלך מפגש.</p>
+      </div>
+      <div id="favorites-list"></div>
+    </section>
+
+    <!-- ---------- View: אודות ---------- -->
+    <section class="view" id="view-about">
+      <div class="view-header">
+        <h2>אודות</h2>
+        <p>NLP Coach Companion הוא כלי עזר למאמני NLP דוברי עברית, לתרגול, חזרה וחיפוש שאלות אימון במהלך העבודה השוטפת.</p>
+      </div>
+      <div class="card" style="max-inline-size:520px;">
+        <h3>שלב פיתוח נוכחי</h3>
+        <p class="card-subtitle" style="margin-block-end:0;">
+          שלב 3: לוגיקת אפליקציה מלאה — ניווט, חומרי חזרה עם התקדמות, מאגר שאלות עם מועדפים,
+          ותרגול תרחישים עם הנחיה נגללת. המצב נשמר אוטומטית בדפדפן בין ביקורים.
+        </p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Load order matters: data.js must run before app.js.
+     Both are plain (non-module, non-defer) scripts, so the browser
+     executes them synchronously in the order they appear here. -->
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
